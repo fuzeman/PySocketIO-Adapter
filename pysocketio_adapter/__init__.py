@@ -108,7 +108,7 @@ class Adapter(object):
         self.encoder.encode(packet, on_encoded)
 
     def broadcast_clients(self, flags, excluded, encoded_packets):
-        for sid in self.sids:
+        for sid in list(self.sids):
             if sid in excluded:
                 continue
 
