@@ -66,8 +66,12 @@ class Adapter(object):
         :param sid: socket id
         :type sid: str
         """
+        if sid not in self.sids:
+            return
+
         for room in self.sids[sid].keys():
-            del self.rooms[room][sid]
+            if sid in self.rooms[room]:
+                del self.rooms[room][sid]
 
         del self.sids[sid]
 
@@ -122,11 +126,11 @@ class Adapter(object):
     def broadcast_rooms(self, flags, excluded, encoded_packets, rooms):
         sids = {}
 
-        for room in rooms:
+        for room in list(rooms):
             if room not in self.rooms:
                 continue
 
-            for sid in self.rooms[room]:
+            for sid in list(self.rooms[room]):
                 if sid in sids or sid in excluded:
                     continue
 
