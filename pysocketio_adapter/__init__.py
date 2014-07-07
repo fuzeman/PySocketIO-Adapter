@@ -54,8 +54,11 @@ class Adapter(object):
         self.sids[sid] = self.sids.get(sid) or {}
         self.rooms[room] = self.rooms.get(room) or {}
 
-        del self.sids[sid][room]
-        del self.rooms[room][sid]
+        if room in self.sids[sid]:
+            del self.sids[sid][room]
+
+        if sid in self.rooms[room]:
+            del self.rooms[room][sid]
 
         if callback:
             callback()
