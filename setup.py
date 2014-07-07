@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='PySocketIO-Adapter',
-    version='0.2.0-beta',
+    version='0.3.1-beta',
     url='http://github.com/fuzeman/PySocketIO-Adapter/',
 
     author='Dean Gardiner',
